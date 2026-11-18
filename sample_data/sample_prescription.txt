@@ -1,0 +1,30 @@
+CITY HEALTH CLINIC & DISPENSARY
+Consultant: Dr. A. Sharma, MBBS, MD (Medicine)
+Reg No: MCI-48291
+Patient: John Doe | Age: 34 | Date: 12-Nov-2025
+Diagnosis: Acute Upper Respiratory Tract Infection (Pharyngitis)
+
+Rx (Medications Prescribed):
+-----------------------------------------------------------------------------------------
+1. Tab. Amoxicillin 500mg
+   Dosage: 1 Tablet three times daily (after breakfast, lunch, and dinner)
+   Duration: 5 Days strictly
+   Purpose: Broad-spectrum antibiotic to clear bacterial infection
+
+2. Tab. Paracetamol 650mg (Dolo)
+   Dosage: 1 Tablet SOS (as needed for body aches or fever > 100°F)
+   Frequency: Minimum 6 hours gap, maximum 3 tablets in 24 hours
+   Purpose: Fever reducer and analgesia
+
+3. Tab. Cetirizine 10mg
+   Dosage: 1 Tablet at bedtime before sleeping
+   Duration: 3 Days
+   Purpose: Relieve runny nose, throat tickle, and night cough
+
+General Clinical Advice:
+- Gargle with warm salt water twice daily.
+- Drink warm water throughout the day. Avoid chilled beverages and ice cream.
+- Complete the 5-day antibiotic course even if feeling fully recovered.
+- Review immediately if fever persists past 3 days or rash occurs.
+-----------------------------------------------------------------------------------------
+Doctor's Signature & Seal

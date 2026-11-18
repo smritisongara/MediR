@@ -1,0 +1,33 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >> endobj
+5 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+4 0 obj << /Length 743 >> stream
+BT
+/F1 12 Tf
+50 720 Td
+18 TL
+(METROPOLIS CLINICAL DIAGNOSTICS LABORATORY) '
+(Patient: John Doe \(34 Y / Male\) | Date: 10-Nov-2025) '
+(COMPLETE BLOOD COUNT \(CBC\) LABORATORY REPORT) '
+() '
+(Hemoglobin \(Hb\): 10.2 g/dL [LOW] \(Normal: 13.0 - 17.0 g/dL\)) '
+(Total Leucocyte Count \(WBC\): 14,800 /mcL [HIGH] \(Normal: 4,000 - 11,000 /mcL\)) '
+(Red Blood Cells \(RBC\): 3.9 million/mcL [LOW] \(Normal: 4.5 - 5.5 million/mcL\)) '
+(Platelet Count: 220,000 /mcL [NORMAL] \(Normal: 150,000 - 450,000 /mcL\)) '
+(Neutrophils: 78 % [HIGH] \(Normal: 40 - 70 %\)) '
+(Lymphocytes: 18 % [LOW] \(Normal: 20 - 40 %\)) '
+(ESR: 32 mm/hr [HIGH] \(Normal: 0 - 15 mm/hr\)) '
+() '
+(Clinical Interpretation: Elevated WBC with mild anemia. Consult physician.) '
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+999
+%%EOF

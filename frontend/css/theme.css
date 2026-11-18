@@ -1,0 +1,82 @@
+/* ===================================================================
+   MediR AI - Green Healthcare Design System & Theme Tokens
+   Light Mode & Dark Mode Specifications
+   =================================================================== */
+
+:root {
+  /* Light Mode (User Specified) */
+  --bg-main: #F5FBF6;
+  --primary-green: #198754;
+  --secondary-green: #2E9D68;
+  --mint-bg: #DDF5E5;
+  --card-bg: #FFFFFF;
+  --text-main: #1F2937;
+  --border-color: #DCE9DF;
+  
+  /* Additional supporting tokens */
+  --text-muted: #5D6B78;
+  --primary-hover: #146c43;
+  --primary-glow: rgba(25, 135, 84, 0.25);
+  
+  /* Status Badges */
+  --badge-high-bg: #FEE2E2;
+  --badge-high-text: #DC2626;
+  --badge-low-bg: #FEF3C7;
+  --badge-low-text: #D97706;
+  --badge-normal-bg: #D1FAE5;
+  --badge-normal-text: #059669;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(25, 135, 84, 0.06);
+  --shadow-md: 0 4px 12px rgba(25, 135, 84, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 12px 28px rgba(25, 135, 84, 0.12), 0 4px 8px rgba(0, 0, 0, 0.04);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode (User Specified) */
+[data-theme="dark"] {
+  --bg-main: #101A14;
+  --primary-green: #32A66A;
+  --secondary-green: #50C878;
+  --card-bg: #1B2A21;
+  --text-main: #F1F8F2;
+  --border-color: #314638;
+  --mint-bg: rgba(50, 166, 106, 0.18);
+  
+  --text-muted: #9BB3A3;
+  --primary-hover: #45bd7e;
+  --primary-glow: rgba(50, 166, 106, 0.35);
+
+  --badge-high-bg: rgba(239, 68, 68, 0.2);
+  --badge-high-text: #FCA5A5;
+  --badge-low-bg: rgba(245, 158, 11, 0.2);
+  --badge-low-text: #FDE68A;
+  --badge-normal-bg: rgba(34, 197, 94, 0.2);
+  --badge-normal-text: #86EFAC;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.55);
+}
+
+/* High Contrast Mode for Accessibility */
+[data-contrast="high"] {
+  --bg-main: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --text-main: #000000;
+  --border-color: #000000;
+  --primary-green: #0A58CA;
+}
+[data-theme="dark"][data-contrast="high"] {
+  --bg-main: #000000;
+  --card-bg: #000000;
+  --text-main: #FFFFFF;
+  --border-color: #FFFFFF;
+  --primary-green: #54B4D3;
+}

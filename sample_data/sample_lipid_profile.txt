@@ -1,0 +1,22 @@
+CAREPLUS DIAGNOSTIC CENTER
+Patient Name: Jane Smith (Demo Patient)
+Age / Gender: 42 Y / Female
+Sample Drawn: Fasting (12 hrs)
+Date: 14-Nov-2025
+
+LIPID PROFILE / CHOLESTEROL PANEL
+-----------------------------------------------------------------------------------------
+Test Parameter                 Observed Value      Units                Desirable Range
+-----------------------------------------------------------------------------------------
+Total Cholesterol              245 [HIGH]          mg/dL                < 200 mg/dL
+Triglycerides                  210 [HIGH]          mg/dL                < 150 mg/dL
+HDL Cholesterol ('Good')       38 [LOW]            mg/dL                > 40 mg/dL
+LDL Cholesterol ('Bad')        165 [HIGH]          mg/dL                < 100 mg/dL
+VLDL Cholesterol               42 [HIGH]           mg/dL                < 30 mg/dL
+Cholesterol / HDL Ratio        6.4 [ELEVATED]      ratio                < 5.0
+-----------------------------------------------------------------------------------------
+Interpretation:
+Moderate hypercholesterolemia with low HDL.
+Recommend dietary modification, aerobic exercise, and consultation with treating physician.
+-----------------------------------------------------------------------------------------
+Authorized Signatory: Dr. K. Nair, MD Biochemistry

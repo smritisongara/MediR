@@ -1,0 +1,26 @@
+METROPOLIS CLINICAL DIAGNOSTICS LABORATORY
+Patient Name: John Doe (Demo Patient)
+Age / Gender: 34 Y / Male
+Date of Collection: 10-Nov-2025
+Referring Clinician: Dr. A. Sharma, MD
+
+COMPLETE BLOOD COUNT (CBC) REPORT
+-----------------------------------------------------------------------------------------
+Test Investigation             Observed Value      Reference Unit       Biological Range
+-----------------------------------------------------------------------------------------
+Hemoglobin (Hb)                10.2 [LOW]          g/dL                 13.0 - 17.0
+Total Leucocyte Count (WBC)    14,800 [HIGH]       /mcL                 4,000 - 11,000
+Red Blood Cells (RBC)          3.9 [LOW]           million/mcL          4.5 - 5.5
+Packed Cell Volume (PCV)       33.0 [LOW]          %                    38.0 - 50.0
+Platelet Count                 220,000 [NORMAL]    /mcL                 150,000 - 450,000
+Neutrophils                    78 [HIGH]           %                    40 - 70
+Lymphocytes                    18 [LOW]            %                    20 - 40
+Eosinophils                    3 [NORMAL]          %                    1 - 6
+Monocytes                      1 [NORMAL]          %                    2 - 8
+ESR (Erythrocyte Sed. Rate)    32 [HIGH]           mm/hr                0 - 15
+-----------------------------------------------------------------------------------------
+Laboratory Remarks:
+Mild normocytic hypochromic anemia with neutrophilic leukocytosis.
+Suggest clinical correlation with signs of infection or sore throat.
+-----------------------------------------------------------------------------------------
+Verified By: Dr. R. Verma, Senior Pathologist
