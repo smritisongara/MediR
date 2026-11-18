@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Medical Problem & Report Analyzer – MediR AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Safety Notice -->
+  <div class="disclaimer-banner">
+    <i class="bi bi-shield-exclamation"></i>
+    <span data-i18n="disclaimer_text">⚠️ MediR is an educational medical communication assistant, not a doctor. Always consult your qualified healthcare professional.</span>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg medir-navbar">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-custom" href="index.html">
+        <i class="bi bi-heart-pulse-fill"></i>
+        <div>
+          <span>MediR</span>
+          <span class="brand-tagline">AI Medical Communication</span>
+        </div>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#medirNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="medirNavbar">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom active" href="analyzer.html">AI Analyzer</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="hospital.html">Nearby Hospitals</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="chatbot.html">Chatbot</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="history.html">My Reports</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2">
+          <select id="globalLanguageSelect" class="form-select form-select-sm" style="width: auto;" onchange="setLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="mr">मराठी (Marathi)</option>
+            <option value="gu">ગુજરાતી (Gujarati)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="ml">മലയാളം (Malayalam)</option>
+          </select>
+
+          <button class="btn btn-outline-secondary btn-sm rounded-circle p-2" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+            <i id="themeToggleIcon" class="bi bi-moon-stars-fill text-success theme-toggle-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-5">
+    <div class="text-center mb-4">
+      <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill mb-2">
+        <i class="bi bi-cpu-fill"></i> Multi-Modal Medical Engine
+      </span>
+      <h2 class="display-6 fw-bold">AI Medical Problem & Report Analyzer</h2>
+      <p class="text-muted">Submit health concerns or diagnostic reports using any of the 5 input methods below for instant plain-language analysis.</p>
+    </div>
+
+    <!-- Quick Demo Testing Strip -->
+    <div class="medir-card p-3 mb-4 text-center" style="background-color: var(--mint-bg);">
+      <div class="fw-bold mb-1" style="color: var(--primary-green);"><i class="bi bi-lightning-charge-fill"></i> Instant Test Demonstration (1-Click)</div>
+      <p class="small text-muted mb-2">No report file ready? Load an authentic anonymized laboratory panel to test immediately:</p>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <button id="btnLoadSampleCBC" class="btn btn-sm btn-medir-primary">
+          <i class="bi bi-file-earmark-medical"></i> Load Sample Blood Test (CBC)
+        </button>
+        <button id="btnLoadSampleLipid" class="btn btn-sm btn-medir-secondary">
+          <i class="bi bi-heart-pulse"></i> Load Sample Lipid Profile
+        </button>
+      </div>
+    </div>
+
+    <!-- Multi-Modal Input Tabs -->
+    <div class="medir-card p-4 mb-5">
+      <ul class="nav nav-pills nav-fill mb-4" id="inputTabs" role="tablist">
+        <li class="nav-item">
+          <button class="nav-link active fw-bold" id="tab-written" data-bs-toggle="tab" data-bs-target="#pane-written">
+            <i class="bi bi-pen"></i> A. Written Input
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fw-bold" id="tab-pdf" data-bs-toggle="tab" data-bs-target="#pane-pdf">
+            <i class="bi bi-file-earmark-pdf"></i> B. PDF Document
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fw-bold" id="tab-camera" data-bs-toggle="tab" data-bs-target="#pane-camera">
+            <i class="bi bi-camera"></i> C. Photo & Camera
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fw-bold" id="tab-voice" data-bs-toggle="tab" data-bs-target="#pane-voice">
+            <i class="bi bi-mic"></i> D. Voice Input
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fw-bold" id="tab-video" data-bs-toggle="tab" data-bs-target="#pane-video">
+            <i class="bi bi-play-btn"></i> E. Video Upload
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="inputTabContent">
+        <!-- Tab A: Written Input -->
+        <div class="tab-pane fade show active" id="pane-written">
+          <label class="form-label fw-bold">Describe Your Symptoms, Health Concern, or Paste Report Text:</label>
+          <textarea id="writtenInputText" class="form-control mb-3" rows="6" placeholder="Example: 'Patient feels fatigued with mild sore throat. Lab shows Hemoglobin 10.2 g/dL, Total Leucocyte Count (WBC) 14,800 /mcL, ESR 32 mm/hr...'"></textarea>
+          <button id="btnSubmitWritten" class="btn btn-medir btn-medir-primary">
+            <i class="bi bi-cpu"></i> Analyze Written Information
+          </button>
+        </div>
+
+        <!-- Tab B: PDF Document -->
+        <div class="tab-pane fade" id="pane-pdf">
+          <div id="pdfDropZone" class="drop-zone mb-3">
+            <i class="bi bi-file-earmark-arrow-up display-4 text-success mb-2"></i>
+            <h5 class="fw-bold">Drag & Drop Your Medical PDF Here</h5>
+            <p class="small text-muted mb-0">Laboratory test reports, health checkups, hospital discharge summaries</p>
+            <input type="file" id="pdfFileInput" class="d-none" accept=".pdf">
+          </div>
+          <button id="btnSubmitPdf" class="btn btn-medir btn-medir-primary w-100" style="display: none;">
+            <i class="bi bi-file-earmark-check"></i> Process Uploaded PDF
+          </button>
+        </div>
+
+        <!-- Tab C: Photo & Camera -->
+        <div class="tab-pane fade" id="pane-camera">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+              <div class="p-3 border rounded text-center">
+                <button id="btnStartCamera" class="btn btn-medir btn-medir-secondary mb-3">
+                  <i class="bi bi-camera-video"></i> Start Camera Viewfinder
+                </button>
+                <div class="camera-container mb-2" id="cameraBox" style="display: none;">
+                  <video id="cameraVideo" autoplay playsinline></video>
+                  <canvas id="cameraCanvas" style="display: none;"></canvas>
+                </div>
+                <div class="d-flex justify-content-center gap-2">
+                  <button id="btnCapturePhoto" class="btn btn-sm btn-primary" style="display: none;">
+                    <i class="bi bi-camera"></i> Take Snapshot
+                  </button>
+                  <button id="btnRetakePhoto" class="btn btn-sm btn-outline-secondary" style="display: none;">
+                    Retake
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Or Upload Photo from Device:</label>
+              <input type="file" id="photoFileInput" class="form-control mb-3" accept=".png,.jpg,.jpeg,.webp">
+              
+              <label class="form-label fw-bold">Review & Edit Extracted Text (OCR Verification):</label>
+              <textarea id="ocrReviewText" class="form-control mb-3" rows="5" placeholder="Extracted text will appear here. You can review and correct any faint or handwritten parts before AI analysis..."></textarea>
+              <button id="btnSubmitOcr" class="btn btn-medir btn-medir-primary w-100">
+                <i class="bi bi-check2-circle"></i> Analyze Verified Text
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab D: Voice Input -->
+        <div class="tab-pane fade text-center" id="pane-voice">
+          <div class="py-4">
+            <button id="btnVoiceMic" class="btn btn-danger btn-lg rounded-circle p-4 mb-3" style="width: 90px; height: 90px; font-size: 2.2rem;">
+              <i class="bi bi-mic-fill"></i>
+            </button>
+            <div id="voiceSoundWave" class="sound-wave mb-2">
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+            </div>
+            <div id="voiceStatus" class="fw-bold text-success mb-3">Tap microphone and speak your health questions or test values</div>
+            
+            <div class="text-start mb-3" style="max-width: 650px; margin: 0 auto;">
+              <label class="form-label fw-bold">Transcribed Speech (Review & Correct Before Submitting):</label>
+              <textarea id="voiceTranscriptEdit" class="form-control" rows="3" placeholder="Your spoken words will appear here..."></textarea>
+            </div>
+
+            <div class="d-flex justify-content-center gap-2">
+              <button id="btnSubmitVoice" class="btn btn-medir btn-medir-primary">
+                <i class="bi bi-cpu"></i> Analyze Spoken Question
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab E: Video Upload -->
+        <div class="tab-pane fade" id="pane-video">
+          <label class="form-label fw-bold">Upload Medical Consultation Video (MP4, WebM, MOV):</label>
+          <input type="file" id="videoInputFile" class="form-control mb-3" accept="video/mp4,video/webm,video/quicktime">
+          <p class="small text-muted mb-3"><i class="bi bi-info-circle"></i> Extracts physician spoken advice and summarizes key dosage and rest takeaways.</p>
+          <button id="btnSubmitVideo" class="btn btn-medir btn-medir-primary">
+            <i class="bi bi-soundwave"></i> Extract Transcript & Summarize
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Processing Loader -->
+    <div id="analyzerLoader" class="alert alert-success text-center py-4 my-4" style="display: none;">
+      <div class="spinner-border text-success mb-2" role="status"></div>
+      <div class="fw-bold fs-5">Analyzing Medical Information with MediR AI...</div>
+      <p class="small text-muted mb-0">Cross-referencing biological reference ranges and decoding clinical terms</p>
+    </div>
+
+    <!-- 3. Medical Report Analysis Results Section -->
+    <div id="analysisResultsBox" style="display: none;">
+      <!-- Audio Player Bar -->
+      <div class="audio-player-card mb-4 shadow-sm">
+        <div class="d-flex align-items-center gap-3">
+          <div class="feature-card-icon icon-teal mb-0" style="width: 44px; height: 44px;">
+            <i class="bi bi-volume-up-fill"></i>
+          </div>
+          <div>
+            <div class="fw-bold">Spoken Explanation Audio</div>
+            <div class="small text-muted">Listen to analysis in your preferred language & speed</div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <button id="btnAudioPlay" class="btn btn-sm btn-medir-primary"><i class="bi bi-play-fill"></i> Play</button>
+          <button id="btnAudioPause" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pause-fill"></i> Pause</button>
+          <button id="btnAudioStop" class="btn btn-sm btn-outline-danger"><i class="bi bi-stop-fill"></i> Stop</button>
+          <select id="audioSpeedSelect" class="form-select form-select-sm" style="width: 80px;">
+            <option value="0.8">0.8x</option>
+            <option value="1.0" selected>1.0x</option>
+            <option value="1.2">1.2x</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Plain Language Document Summary -->
+      <div class="medir-card mb-4">
+        <h4 class="fw-bold text-success mb-3"><i class="bi bi-file-earmark-text"></i> Plain Language Summary</h4>
+        <p id="resSummary" class="lead fs-6 mb-0" style="line-height: 1.8;"></p>
+      </div>
+
+      <!-- 5-Column Medical Results Table -->
+      <div class="medir-card mb-4">
+        <h4 class="fw-bold mb-3"><i class="bi bi-table text-success"></i> Medical Parameters & Reference Ranges Table</h4>
+        <div class="table-responsive">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Test Name</th>
+                <th>Measured Value</th>
+                <th>Unit</th>
+                <th>Reference Range</th>
+                <th>Simple Explanation</th>
+              </tr>
+            </thead>
+            <tbody id="resultsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <!-- Important Observations & Flagged Values -->
+        <div class="col-lg-6">
+          <div class="medir-card h-100">
+            <h5 class="fw-bold mb-3"><i class="bi bi-exclamation-triangle-fill text-warning"></i> Important Clinical Observations</h5>
+            <ul id="resObservationsList" class="ps-3 mb-0 small"></ul>
+
+            <div id="unreadableNoticeBox" class="alert alert-warning mt-3 py-2 small" style="display: none;">
+              <i class="bi bi-question-diamond-fill"></i> <span id="unreadableNoticeText"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Questions to Ask Your Doctor -->
+        <div class="col-lg-6">
+          <div class="medir-card h-100" style="border-left: 4px solid var(--primary-green);">
+            <h5 class="fw-bold mb-3" style="color: var(--primary-green);"><i class="bi bi-clipboard2-pulse"></i> Questions for Your Doctor</h5>
+            <p class="small text-muted mb-2">Bring these personalized questions to your doctor's appointment:</p>
+            <ul id="resDoctorQuestionsList" class="ps-3 mb-0 small"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medical Terms Decoded -->
+      <div class="medir-card mb-4">
+        <h5 class="fw-bold mb-3"><i class="bi bi-book-half text-secondary"></i> Medical Terminology Decoded</h5>
+        <div id="resGlossaryContainer" class="row g-3"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Universal Voice Modal -->
+  <div id="voiceModal" class="voice-modal-overlay">
+    <div class="voice-modal-box">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0 text-success"><i class="bi bi-mic-fill"></i> Voice Assistant</h5>
+        <button class="btn btn-sm btn-outline-secondary" onclick="toggleVoiceModal()">&times;</button>
+      </div>
+      <div id="soundWaveBox" class="sound-wave">
+        <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+      </div>
+      <div id="voiceStatusText" class="fw-semibold text-secondary mb-2">Listening...</div>
+      <div id="voiceTranscriptText" class="fst-italic text-muted small p-2 bg-light rounded mb-3">"Say: Open dashboard..."</div>
+      <div id="voiceReplyText" class="fw-bold text-success mb-3"></div>
+      <div class="d-flex justify-content-center gap-2">
+        <button class="btn btn-sm btn-primary" onclick="startVoiceListening()">Try Again</button>
+        <button class="btn btn-sm btn-secondary" onclick="toggleVoiceModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <button id="floatingVoiceBtn" class="floating-voice-btn" onclick="toggleVoiceModal()"><i class="bi bi-mic-fill"></i></button>
+
+  <footer class="medir-footer text-center">
+    <div class="container small text-muted">MediR AI &bull; Making Medical Information Easy for Everyone</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/analyzer.js"></script>
+</body>
+</html>

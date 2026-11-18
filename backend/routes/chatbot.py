@@ -17,15 +17,14 @@ def chat():
         return jsonify({"success": False, "error": "Question cannot be empty"}), 400
         
     # Check for predefined voice command if coming from voice assistant
-    voice_command_result = None
     if is_voice:
-        voice_command_result = parse_voice_command(question)
-        if voice_command_result["matched"]:
+        cmd_res = parse_voice_command(question)
+        if cmd_res["matched"]:
             return jsonify({
                 "success": True,
                 "is_command": True,
-                "command": voice_command_result,
-                "response": voice_command_result["speech_reply"]
+                "command": cmd_res,
+                "response": cmd_res["speech_reply"]
             })
             
     # Retrieve report context if available
@@ -46,7 +45,8 @@ def chat():
         "is_command": False,
         "question": question,
         "response": ai_response,
-        "report_id": report_id
+        "report_id": report_id,
+        "speak_aloud": is_voice  # Instructs client to read answer aloud if spoken by voice
     }), 200
 
 @chatbot_bp.route('/history', methods=['GET'])

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Details – MediR AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Safety Disclaimer -->
+  <div class="disclaimer-banner">
+    <i class="bi bi-shield-exclamation"></i>
+    <span>⚠️ FOR IMMEDIATE LIFE-THREATENING EMERGENCIES: Dial 108 or 112 directly. Hospital hours and listings do not guarantee live bed availability.</span>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg medir-navbar">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-custom" href="index.html">
+        <i class="bi bi-heart-pulse-fill"></i>
+        <div>
+          <span>MediR</span>
+          <span class="brand-tagline">AI Medical Communication</span>
+        </div>
+      </a>
+      
+      <div class="d-flex align-items-center gap-2">
+        <a href="hospital.html" class="btn btn-sm btn-outline-success"><i class="bi bi-arrow-left"></i> Back to Hospital Finder</a>
+        <button class="btn btn-outline-secondary btn-sm rounded-circle p-2" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+          <i id="themeToggleIcon" class="bi bi-moon-stars-fill text-success theme-toggle-icon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-5">
+    <!-- Hospital Header Banner -->
+    <div class="medir-card p-4 p-md-5 mb-4">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="d-flex flex-wrap gap-2 mb-2">
+            <span id="hospOwnershipBadge" class="badge bg-primary">Government</span>
+            <span id="hospTypeBadge" class="badge bg-secondary">Multispecialty</span>
+            <span id="hospEmergencyBadge" class="badge bg-danger">24/7 Emergency Active</span>
+          </div>
+          <h2 id="hospName" class="display-6 fw-bold text-success mb-2">Hospital Name</h2>
+          <p id="hospVerificationNote" class="small text-muted mb-3"></p>
+
+          <div class="d-flex flex-wrap gap-3 align-items-center">
+            <span class="text-warning fw-bold fs-5">
+              <i class="bi bi-star-fill"></i> <span id="hospRating">4.8</span> / 5.0
+            </span>
+            <span id="hospReviews" class="text-muted small">(14,250 reviews)</span>
+            <span class="text-success fw-bold"><i class="bi bi-clock-history"></i> <span id="hospHours">Open 24 Hours</span></span>
+          </div>
+        </div>
+
+        <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+          <div class="d-grid gap-2">
+            <a id="btnHospDirections" href="#" target="_blank" class="btn btn-medir btn-medir-primary">
+              <i class="bi bi-compass-fill"></i> Get Directions (Google Maps)
+            </a>
+            <a id="btnHospCall" href="#" class="btn btn-medir btn-medir-secondary">
+              <i class="bi bi-telephone-fill"></i> Call Hospital Directly
+            </a>
+            <a id="btnHospWebsite" href="#" target="_blank" class="btn btn-outline-secondary btn-sm">
+              <i class="bi bi-globe"></i> Visit Official Website
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Left Column: Address Breakdown & Accessibility -->
+      <div class="col-lg-6">
+        <!-- Verified Address Breakdown Card -->
+        <div class="medir-card mb-4">
+          <h4 class="fw-bold mb-3"><i class="bi bi-geo-alt-fill text-danger"></i> Complete Verified Street Address</h4>
+          
+          <table class="table table-sm small">
+            <tbody>
+              <tr>
+                <th style="width: 35%;">Building / Complex:</th>
+                <td id="hospBuilding">Ansari Nagar East</td>
+              </tr>
+              <tr>
+                <th>Road / Street:</th>
+                <td id="hospRoad">Sri Aurobindo Marg</td>
+              </tr>
+              <tr>
+                <th>Locality / Sector:</th>
+                <td id="hospLocality">Ansari Nagar</td>
+              </tr>
+              <tr>
+                <th>City & District:</th>
+                <td id="hospCityDistrict">New Delhi, South Delhi</td>
+              </tr>
+              <tr>
+                <th>State & Country:</th>
+                <td id="hospStateCountry">Delhi, India</td>
+              </tr>
+              <tr>
+                <th>PIN Code:</th>
+                <td><span id="hospPincode" class="badge bg-light text-dark border fs-6">110029</span></td>
+              </tr>
+              <tr>
+                <th>Coordinates:</th>
+                <td id="hospCoords" class="text-muted font-monospace">28.5672° N, 77.2100° E</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="p-3 rounded mt-2" style="background-color: var(--mint-bg);">
+            <div class="fw-bold text-success mb-1"><i class="bi bi-car-front-fill"></i> Distance & Travel Time:</div>
+            <div id="hospTravelTime" class="small text-muted">Estimated travel time calculated via GPS coordinates.</div>
+          </div>
+        </div>
+
+        <!-- Accessibility Information -->
+        <div class="medir-card">
+          <h5 class="fw-bold mb-3"><i class="bi bi-universal-access-circle text-primary"></i> Accessibility Features</h5>
+          <ul id="hospAccessibilityList" class="ps-3 mb-0 small"></ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Departments & Emergency Care -->
+      <div class="col-lg-6">
+        <!-- Emergency Helpline Banner -->
+        <div class="alert alert-danger d-flex align-items-center gap-3 mb-4">
+          <i class="bi bi-hospital fs-2"></i>
+          <div>
+            <strong>Emergency / Trauma Helpline:</strong>
+            <div id="hospEmergencyPhone" class="fs-5 fw-bold">108 / +91-11-26593200</div>
+          </div>
+        </div>
+
+        <!-- Available Departments -->
+        <div class="medir-card mb-4">
+          <h4 class="fw-bold mb-3"><i class="bi bi-grid-3x3-gap-fill text-success"></i> Verified Medical Departments</h4>
+          <div id="hospDepartmentsGrid" class="d-flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Facility Photograph -->
+        <div class="medir-card text-center p-2">
+          <img id="hospImage" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Hospital Building" class="img-fluid rounded-3" style="max-height: 240px; object-fit: cover; width: 100%;">
+          <div class="small text-muted mt-2">Verified Architectural Overview</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="medir-footer text-center">
+    <div class="container small text-muted">MediR AI &bull; Making Medical Information Easy for Everyone</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const hospitalId = urlParams.get('id') || 'del-aiims-1';
+
+      fetch(`/api/hospitals/${hospitalId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.hospital) {
+            renderHospitalDetails(data.hospital);
+          } else {
+            alert("Hospital details not found.");
+          }
+        })
+        .catch(() => alert("Network error loading hospital details."));
+    });
+
+    function renderHospitalDetails(h) {
+      document.getElementById('hospName').innerText = h.name;
+      document.getElementById('hospOwnershipBadge').innerText = h.ownership;
+      document.getElementById('hospTypeBadge').innerText = h.type;
+      document.getElementById('hospVerificationNote').innerText = h.verification_note || '';
+      document.getElementById('hospRating').innerText = h.rating;
+      document.getElementById('hospReviews').innerText = `(${h.review_count} verified reviews)`;
+      document.getElementById('hospHours').innerText = `${h.opening_hours} - ${h.current_status}`;
+
+      // Address fields
+      document.getElementById('hospBuilding').innerText = h.building_no;
+      document.getElementById('hospRoad').innerText = h.road;
+      document.getElementById('hospLocality').innerText = h.locality;
+      document.getElementById('hospCityDistrict').innerText = `${h.city}, ${h.district}`;
+      document.getElementById('hospStateCountry').innerText = `${h.state}, ${h.country}`;
+      document.getElementById('hospPincode').innerText = h.pincode;
+      document.getElementById('hospCoords').innerText = `${h.lat}° N, ${h.lng}° E`;
+
+      document.getElementById('hospTravelTime').innerText = `${h.distance_display} (${h.estimated_travel_time})`;
+      document.getElementById('hospEmergencyPhone').innerText = h.emergency_phone || h.phone;
+
+      // Directions & Links
+      document.getElementById('btnHospDirections').href = h.google_maps_url;
+      document.getElementById('btnHospCall').href = `tel:${h.phone}`;
+      if (h.website) {
+        document.getElementById('btnHospWebsite').href = h.website;
+      } else {
+        document.getElementById('btnHospWebsite').style.display = 'none';
+      }
+
+      // Departments
+      const deptGrid = document.getElementById('hospDepartmentsGrid');
+      if (deptGrid && h.departments) {
+        deptGrid.innerHTML = h.departments.map(d => `
+          <span class="badge bg-light text-dark border p-2"><i class="bi bi-check2 text-success me-1"></i>${d}</span>
+        `).join('');
+      }
+
+      // Accessibility
+      const accessList = document.getElementById('hospAccessibilityList');
+      if (accessList && h.accessibility) {
+        accessList.innerHTML = h.accessibility.map(a => `
+          <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>${a}</li>
+        `).join('');
+      }
+
+      // Image
+      if (h.image_url) {
+        document.getElementById('hospImage').src = h.image_url;
+      }
+    }
+  </script>
+</body>
+</html>

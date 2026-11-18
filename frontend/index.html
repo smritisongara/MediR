@@ -4,18 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MediR AI – AI-Powered Medical Communication Assistant</title>
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <!-- Custom Design System -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/dashboard.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 
-  <!-- Universal Safety Disclaimer -->
+  <!-- Safety Notice -->
   <div class="disclaimer-banner">
     <i class="bi bi-shield-exclamation"></i>
     <span data-i18n="disclaimer_text">
@@ -27,7 +24,7 @@
   <nav class="navbar navbar-expand-lg medir-navbar">
     <div class="container">
       <a class="navbar-brand navbar-brand-custom" href="index.html">
-        <i class="bi bi-heart-pulse-fill text-primary"></i>
+        <i class="bi bi-heart-pulse-fill"></i>
         <div>
           <span>MediR</span>
           <span class="brand-tagline">AI Medical Communication</span>
@@ -42,9 +39,10 @@
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link nav-link-custom active" href="index.html" data-i18n="nav_home">Home</a></li>
           <li class="nav-item"><a class="nav-link nav-link-custom" href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-custom" href="upload.html" data-i18n="nav_upload">Upload Report</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="analyzer.html" data-i18n="nav_analyzer">AI Analyzer</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="hospital.html" data-i18n="nav_hospitals">Nearby Hospitals</a></li>
           <li class="nav-item"><a class="nav-link nav-link-custom" href="chatbot.html" data-i18n="nav_chat">Chatbot</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-custom" href="hospitals.html" data-i18n="nav_hospitals">Nearby Hospitals</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="history.html" data-i18n="nav_history">My Reports</a></li>
         </ul>
 
         <div class="d-flex align-items-center gap-2">
@@ -64,14 +62,14 @@
 
           <!-- Theme Toggle -->
           <button class="btn btn-outline-secondary btn-sm rounded-circle p-2" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
-            <i id="themeToggleIcon" class="bi bi-moon-stars-fill text-primary"></i>
+            <i id="themeToggleIcon" class="bi bi-moon-stars-fill text-success theme-toggle-icon"></i>
           </button>
 
           <!-- Accessibility Font Size -->
           <button class="btn btn-sm btn-outline-secondary" onclick="adjustFontSize(1)" title="Increase Font Size">A+</button>
           <button class="btn btn-sm btn-outline-secondary" onclick="adjustFontSize(-1)" title="Decrease Font Size">A-</button>
 
-          <!-- Login / Dashboard Button -->
+          <!-- Login / Profile Button -->
           <a href="login.html" class="btn btn-medir btn-medir-primary btn-sm ms-2">
             <i class="bi bi-person-circle"></i> <span data-i18n="nav_login">Login</span>
           </a>
@@ -81,12 +79,12 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="py-5 hero-section" style="background: radial-gradient(circle at 80% 20%, var(--primary-light), transparent 50%);">
+  <section class="py-5 hero-section" style="background: radial-gradient(circle at 80% 20%, var(--mint-bg), transparent 50%);">
     <div class="container py-4">
       <div class="row align-items-center">
         <div class="col-lg-7">
-          <div class="badge bg-primary-subtle text-primary fw-semibold px-3 py-2 rounded-pill mb-3">
-            <i class="bi bi-stars"></i> AI-Powered Healthcare Communication
+          <div class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill mb-3">
+            <i class="bi bi-stars"></i> AI-Powered Healthcare Communication Platform
           </div>
           <h1 class="display-4 fw-extrabold mb-3" data-i18n="hero_title">
             Understand Your Health, Without Language Barriers.
@@ -95,44 +93,44 @@
             Upload your medical report, understand complicated medical terms, translate information into your regional language, and listen to simple explanations with the power of AI.
           </p>
           <div class="d-flex flex-wrap gap-3">
-            <a href="upload.html" class="btn btn-medir btn-medir-primary btn-lg">
-              <i class="bi bi-cloud-arrow-up-fill"></i> <span data-i18n="btn_upload_hero">Upload Medical Report</span>
+            <a href="analyzer.html" class="btn btn-medir btn-medir-primary btn-lg">
+              <i class="bi bi-cpu-fill"></i> <span data-i18n="btn_upload_hero">Analyze Medical Report</span>
             </a>
             <a href="dashboard.html" class="btn btn-medir btn-medir-outline btn-lg">
               <i class="bi bi-grid-fill"></i> <span data-i18n="btn_explore_hero">Explore AI Assistant</span>
             </a>
-            <a href="hospitals.html" class="btn btn-medir btn-medir-secondary btn-lg">
-              <i class="bi bi-geo-alt-fill"></i> Find Hospitals
+            <a href="hospital.html" class="btn btn-medir btn-medir-secondary btn-lg">
+              <i class="bi bi-hospital-fill"></i> Find Hospitals
             </a>
           </div>
-          <div class="mt-4 pt-2 text-muted small d-flex align-items-center gap-3">
+          <div class="mt-4 pt-2 text-muted small d-flex flex-wrap align-items-center gap-3">
             <span><i class="bi bi-shield-check text-success"></i> 100% Patient Privacy</span>
-            <span><i class="bi bi-translate text-primary"></i> 10+ Regional Languages</span>
-            <span><i class="bi bi-mic text-danger"></i> Spoken Voice AI</span>
+            <span><i class="bi bi-translate text-success"></i> 10+ Regional Languages</span>
+            <span><i class="bi bi-mic text-danger"></i> Advanced English & Hindi Voice AI</span>
           </div>
         </div>
 
         <div class="col-lg-5 mt-4 mt-lg-0">
-          <div class="medir-card shadow-lg p-4 border-primary border-opacity-25">
+          <div class="medir-card shadow-lg p-4 border-success border-opacity-25">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h5 class="fw-bold mb-0 text-primary"><i class="bi bi-file-earmark-medical"></i> Quick Test Demonstration</h5>
+              <h5 class="fw-bold mb-0 text-success"><i class="bi bi-cpu"></i> Instant Multi-Modal Testing</h5>
               <span class="badge bg-success-subtle text-success">Live Ready</span>
             </div>
             <p class="small text-muted mb-3">
-              Testing for hackathon presentation? Load a sample report with 1-click and see instant simplified explanations, high/low flags, and audio playback:
+              Test any of MediR's multi-modal inputs with 1-click authentic sample data:
             </p>
             <div class="d-grid gap-2">
-              <a href="upload.html" class="btn btn-outline-primary text-start">
-                <i class="bi bi-file-text"></i> Sample Blood Test (CBC) with Elevated WBC
+              <a href="analyzer.html" class="btn btn-outline-success text-start">
+                <i class="bi bi-file-earmark-medical"></i> 1. AI Problem & Report Analyzer
               </a>
-              <a href="upload.html" class="btn btn-outline-primary text-start">
-                <i class="bi bi-heart-pulse"></i> Sample Lipid Profile (Cholesterol)
+              <a href="hospital.html" class="btn btn-outline-success text-start">
+                <i class="bi bi-geo-alt"></i> 2. Nearby Hospital Finder with Full Addresses
+              </a>
+              <a href="voice.html" class="btn btn-outline-success text-start">
+                <i class="bi bi-mic"></i> 3. Advanced Voice Command Assistant
               </a>
               <a href="prescription.html" class="btn btn-outline-success text-start">
-                <i class="bi bi-capsule"></i> Sample Doctor Prescription & Dosage
-              </a>
-              <a href="voice.html" class="btn btn-outline-secondary text-start">
-                <i class="bi bi-mic"></i> Try Voice Command Assistant
+                <i class="bi bi-capsule"></i> 4. Prescription Scanner & Dosage Explainer
               </a>
             </div>
           </div>
@@ -142,23 +140,23 @@
   </section>
 
   <!-- How It Works Section (4 Steps) -->
-  <section class="py-5" style="background-color: var(--bg-card-subtle);">
+  <section class="py-5" style="background-color: var(--mint-bg);">
     <div class="container py-3">
       <div class="text-center mb-5">
         <h2 class="fw-bold" data-i18n="how_it_works">How MediR Works</h2>
-        <p class="text-muted">A simple 4-step AI pipeline making complex medical documents accessible to everyone.</p>
+        <p class="text-muted">A comprehensive 4-step AI pipeline making complex medical documents accessible to everyone.</p>
       </div>
 
       <div class="row g-4">
         <!-- Step 1 -->
         <div class="col-md-3">
           <div class="medir-card text-center h-100">
-            <div class="feature-card-icon icon-blue mx-auto">
-              <i class="bi bi-upload"></i>
+            <div class="feature-card-icon icon-emerald mx-auto">
+              <i class="bi bi-pen"></i>
             </div>
-            <h5 class="fw-bold" data-i18n="step1_title">1. Upload Your Report</h5>
+            <h5 class="fw-bold" data-i18n="step1_title">1. Submit Medical Info</h5>
             <p class="small text-muted" data-i18n="step1_desc">
-              Upload lab tests, doctor notes, or prescriptions in PDF, PNG, JPG format, or snap a live photo.
+              Type symptoms, upload lab PDFs, snap camera photos, speak via voice, or upload video advice.
             </p>
           </div>
         </div>
@@ -169,9 +167,9 @@
             <div class="feature-card-icon icon-teal mx-auto">
               <i class="bi bi-cpu"></i>
             </div>
-            <h5 class="fw-bold" data-i18n="step2_title">2. AI Understands Info</h5>
+            <h5 class="fw-bold" data-i18n="step2_title">2. Advanced AI Analysis</h5>
             <p class="small text-muted" data-i18n="step2_desc">
-              Intelligent OCR and medical AI extract parameters, check reference bounds, and flag high/low values.
+              AI extracts lab values, cross-references clinical biological bounds, and flags high/low parameters.
             </p>
           </div>
         </div>
@@ -180,11 +178,11 @@
         <div class="col-md-3">
           <div class="medir-card text-center h-100">
             <div class="feature-card-icon icon-amber mx-auto">
-              <i class="bi bi-card-checklist"></i>
+              <i class="bi bi-table"></i>
             </div>
-            <h5 class="fw-bold" data-i18n="step3_title">3. Get Simple Explanations</h5>
+            <h5 class="fw-bold" data-i18n="step3_title">3. 5-Column Results Table</h5>
             <p class="small text-muted" data-i18n="step3_desc">
-              Complex medical jargon is broken down into simple terms with custom questions for your doctor.
+              View Test Name, Value, Unit, Reference Range, and Simple Plain-Language Explanations.
             </p>
           </div>
         </div>
@@ -195,38 +193,10 @@
             <div class="feature-card-icon icon-rose mx-auto">
               <i class="bi bi-volume-up"></i>
             </div>
-            <h5 class="fw-bold" data-i18n="step4_title">4. Listen in Your Language</h5>
+            <h5 class="fw-bold" data-i18n="step4_title">4. Multilingual & Spoken Voice</h5>
             <p class="small text-muted" data-i18n="step4_desc">
-              Read or listen in Hindi, Marathi, Gujarati, Tamil, Telugu, Bengali, Punjabi, Kannada, or Malayalam.
+              Translate into 10 regional Indian languages or listen aloud through natural speech synthesis.
             </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Key Pillars Showcase -->
-  <section class="py-5">
-    <div class="container py-3">
-      <div class="row align-items-center mb-5">
-        <div class="col-lg-6">
-          <div class="badge bg-secondary-subtle text-secondary px-3 py-1 rounded-pill mb-2">Multilingual AI</div>
-          <h2 class="fw-bold mb-3">Breaking Medical Language Barriers Across India</h2>
-          <p class="text-muted">
-            Over 70% of patients in regional communities struggle to understand English medical reports. MediR translates complex clinical terminology into familiar native dialects while preserving exact dosages and reference values.
-          </p>
-          <ul class="list-unstyled">
-            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Hindi, Marathi, Gujarati, Bengali, Tamil, Telugu, Punjabi, Kannada, Malayalam.</li>
-            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Preserves exact lab numbers, units, and drug names without alteration.</li>
-            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Spoken audio assistance for visually impaired or illiterate users.</li>
-          </ul>
-          <a href="translation.html" class="btn btn-medir btn-medir-outline">Open Translation Hub</a>
-        </div>
-        <div class="col-lg-6 text-center">
-          <div class="medir-card p-4">
-            <i class="bi bi-translate display-2 text-primary"></i>
-            <h4 class="mt-3">Real-time Multilingual Health Translation</h4>
-            <p class="text-muted small">Switch languages instantly anywhere on the site with zero reload latency.</p>
           </div>
         </div>
       </div>
@@ -237,7 +207,7 @@
   <div id="voiceModal" class="voice-modal-overlay">
     <div class="voice-modal-box">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-bold mb-0 text-primary" data-i18n="voice_assistant_title"><i class="bi bi-mic-fill"></i> MediR Voice Assistant</h5>
+        <h5 class="fw-bold mb-0 text-success" data-i18n="voice_assistant_title"><i class="bi bi-mic-fill"></i> MediR Voice Assistant</h5>
         <button class="btn btn-sm btn-outline-secondary" onclick="toggleVoiceModal()">&times;</button>
       </div>
 
@@ -249,9 +219,9 @@
         <div class="wave-bar"></div>
       </div>
 
-      <div id="voiceStatusText" class="fw-semibold text-secondary mb-2" data-i18n="voice_listening">Listening to your voice...</div>
-      <div id="voiceTranscriptText" class="fst-italic text-muted small p-2 bg-light rounded mb-3">"Speak a command in English or Hindi..."</div>
-      <div id="voiceReplyText" class="fw-bold text-primary mb-3"></div>
+      <div id="voiceStatusText" class="fw-semibold text-secondary mb-2" data-i18n="voice_listening">Listening...</div>
+      <div id="voiceTranscriptText" class="fst-italic text-muted small p-2 bg-light rounded mb-3">"Speak in English or Hindi (e.g. 'Open dashboard', 'डैशबोर्ड खोलो')..."</div>
+      <div id="voiceReplyText" class="fw-bold text-success mb-3"></div>
 
       <div class="d-flex justify-content-center gap-2">
         <button class="btn btn-sm btn-primary" onclick="startVoiceListening()"><i class="bi bi-arrow-repeat"></i> Try Again</button>
@@ -260,29 +230,16 @@
     </div>
   </div>
 
-  <!-- Floating Universal Voice Button -->
   <button id="floatingVoiceBtn" class="floating-voice-btn" onclick="toggleVoiceModal()" title="Voice Command Assistant">
     <i class="bi bi-mic-fill"></i>
   </button>
 
-  <!-- Footer -->
-  <footer class="medir-footer">
-    <div class="container text-center">
-      <div class="mb-2">
-        <strong class="text-primary fs-5">MediR AI</strong> &mdash; <em>Understand Better. Communicate Better. Live Better.</em>
-      </div>
-      <div class="small text-muted mb-3">
-        Built with Python Flask, HTML5, Modern CSS, JavaScript, Leaflet & Web Speech API.
-      </div>
-      <div class="text-muted" style="font-size: 0.75rem;">
-        Educational Assistant Only &bull; Does not provide medical diagnoses or replace a certified physician.
-      </div>
-    </div>
+  <footer class="medir-footer text-center">
+    <div class="container small text-muted">MediR AI &bull; Making Medical Information Easy for Everyone</div>
   </footer>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Main Application Script -->
+  <script src="js/theme.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

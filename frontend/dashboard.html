@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <!-- Safety Disclaimer -->
+  <!-- Safety Notice -->
   <div class="disclaimer-banner">
     <i class="bi bi-shield-exclamation"></i>
     <span data-i18n="disclaimer_text">⚠️ MediR is an educational medical communication assistant, not a doctor. Always consult your qualified healthcare professional.</span>
@@ -22,7 +22,7 @@
   <nav class="navbar navbar-expand-lg medir-navbar">
     <div class="container">
       <a class="navbar-brand navbar-brand-custom" href="index.html">
-        <i class="bi bi-heart-pulse-fill text-primary"></i>
+        <i class="bi bi-heart-pulse-fill"></i>
         <div>
           <span>MediR</span>
           <span class="brand-tagline">AI Medical Communication</span>
@@ -35,12 +35,12 @@
 
       <div class="collapse navbar-collapse" id="medirNavbar">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html" data-i18n="nav_home">Home</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-custom active" href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-custom" href="upload.html" data-i18n="nav_upload">Upload Report</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-custom" href="chatbot.html" data-i18n="nav_chat">Chatbot</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-custom" href="hospitals.html" data-i18n="nav_hospitals">Nearby Hospitals</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-custom" href="history.html" data-i18n="nav_history">My Reports</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom active" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="analyzer.html">AI Analyzer</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="hospital.html">Nearby Hospitals</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="chatbot.html">Chatbot</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="history.html">My Reports</a></li>
         </ul>
 
         <div class="d-flex align-items-center gap-2">
@@ -59,205 +59,189 @@
           </select>
 
           <!-- Theme Toggle -->
-          <button class="btn btn-outline-secondary btn-sm rounded-circle p-2" onclick="toggleTheme()" title="Toggle Theme">
-            <i id="themeToggleIcon" class="bi bi-moon-stars-fill text-primary"></i>
+          <button class="btn btn-outline-secondary btn-sm rounded-circle p-2" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+            <i id="themeToggleIcon" class="bi bi-moon-stars-fill text-success theme-toggle-icon"></i>
           </button>
 
-          <!-- Accessibility -->
-          <button class="btn btn-sm btn-outline-secondary" onclick="adjustFontSize(1)" title="Larger Font">A+</button>
-          <button class="btn btn-sm btn-outline-secondary" onclick="adjustFontSize(-1)" title="Smaller Font">A-</button>
-
-          <!-- User Badge -->
-          <div class="dropdown ms-2">
-            <button class="btn btn-sm btn-medir-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">
-              <i class="bi bi-person-fill text-primary"></i> <span id="dashUsername">Demo Patient</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="history.html"><i class="bi bi-folder2-open"></i> Stored Reports</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="/api/auth/logout"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
-            </ul>
-          </div>
+          <!-- User Badge / Profile Link -->
+          <a href="profile.html" class="btn btn-sm btn-outline-success ms-2">
+            <i class="bi bi-person-circle"></i> <span id="dashUsername">Profile & Settings</span>
+          </a>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- Dashboard Main Content -->
-  <main class="container my-4">
+  <main class="container my-5">
     <!-- Welcome Header & Stats -->
     <div class="row align-items-center mb-4">
       <div class="col-md-8">
-        <h2 class="fw-bold mb-1">Welcome back, <span class="text-primary">Demo Patient</span> 👋</h2>
-        <p class="text-muted mb-0">Select any medical communication assistant module below to get started.</p>
+        <h2 class="display-6 fw-bold mb-1">Welcome, <span style="color: var(--primary-green);">Patient Portal</span> 👋</h2>
+        <p class="text-muted mb-0">Select any medical communication assistant module below to analyze health reports or locate care.</p>
       </div>
       <div class="col-md-4 text-md-end mt-3 mt-md-0">
-        <a href="upload.html" class="btn btn-medir btn-medir-primary">
-          <i class="bi bi-cloud-arrow-up-fill"></i> Upload New Report
+        <a href="analyzer.html" class="btn btn-medir btn-medir-primary">
+          <i class="bi bi-cpu-fill"></i> Open AI Problem Analyzer
         </a>
       </div>
     </div>
 
     <!-- Quick Metrics Banner -->
-    <div class="row g-3 mb-4">
+    <div class="row g-3 mb-5">
       <div class="col-6 col-md-3">
-        <div class="p-3 border rounded-3 bg-white shadow-sm d-flex align-items-center gap-3">
-          <div class="feature-card-icon icon-blue mb-0" style="width: 44px; height: 44px;"><i class="bi bi-shield-check"></i></div>
+        <div class="p-3 border rounded-3 shadow-sm d-flex align-items-center gap-3" style="background-color: var(--card-bg);">
+          <div class="feature-card-icon icon-emerald mb-0" style="width: 44px; height: 44px;"><i class="bi bi-shield-check"></i></div>
           <div>
-            <div class="fs-5 fw-bold text-dark">100%</div>
+            <div class="fs-5 fw-bold text-success">100%</div>
             <div class="small text-muted">Safe Guidance</div>
           </div>
         </div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="p-3 border rounded-3 bg-white shadow-sm d-flex align-items-center gap-3">
+        <div class="p-3 border rounded-3 shadow-sm d-flex align-items-center gap-3" style="background-color: var(--card-bg);">
           <div class="feature-card-icon icon-teal mb-0" style="width: 44px; height: 44px;"><i class="bi bi-translate"></i></div>
           <div>
-            <div class="fs-5 fw-bold text-dark">10+</div>
+            <div class="fs-5 fw-bold text-success">10+</div>
             <div class="small text-muted">Languages</div>
           </div>
         </div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="p-3 border rounded-3 bg-white shadow-sm d-flex align-items-center gap-3">
+        <div class="p-3 border rounded-3 shadow-sm d-flex align-items-center gap-3" style="background-color: var(--card-bg);">
           <div class="feature-card-icon icon-rose mb-0" style="width: 44px; height: 44px;"><i class="bi bi-hospital"></i></div>
           <div>
-            <div class="fs-5 fw-bold text-dark">24/7</div>
-            <div class="small text-muted">Nearby ER Maps</div>
+            <div class="fs-5 fw-bold text-success">24/7</div>
+            <div class="small text-muted">Verified Hospitals</div>
           </div>
         </div>
       </div>
       <div class="col-6 col-md-3">
-        <div class="p-3 border rounded-3 bg-white shadow-sm d-flex align-items-center gap-3">
+        <div class="p-3 border rounded-3 shadow-sm d-flex align-items-center gap-3" style="background-color: var(--card-bg);">
           <div class="feature-card-icon icon-amber mb-0" style="width: 44px; height: 44px;"><i class="bi bi-mic"></i></div>
           <div>
-            <div class="fs-5 fw-bold text-dark">Voice AI</div>
-            <div class="small text-muted">English & Hindi</div>
+            <div class="fs-5 fw-bold text-success">Advanced</div>
+            <div class="small text-muted">Voice NLU AI</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 12 Dashboard Cards Grid -->
-    <h4 class="fw-bold mb-3"><i class="bi bi-grid-fill text-primary"></i> MediR Assistant Modules (12 Features)</h4>
+    <!-- Dashboard Modules Grid -->
+    <h4 class="fw-bold mb-3"><i class="bi bi-grid-fill" style="color: var(--primary-green);"></i> Healthcare Communication Modules</h4>
 
     <div class="dashboard-grid">
-      <!-- 1. Upload Medical Report -->
-      <a href="upload.html" class="feature-card">
-        <div class="feature-card-icon icon-blue"><i class="bi bi-file-earmark-arrow-up"></i></div>
-        <div class="feature-card-title">1. Upload Medical Report</div>
-        <div class="feature-card-desc">Upload lab test reports in PDF, PNG, JPG format with automatic OCR extraction.</div>
-        <div class="feature-card-action">Upload & Analyze <i class="bi bi-arrow-right"></i></div>
+      <!-- 1. AI Medical Problem & Report Analyzer -->
+      <a href="analyzer.html" class="feature-card">
+        <div class="feature-card-icon icon-emerald"><i class="bi bi-cpu-fill"></i></div>
+        <div class="feature-card-title">1. AI Problem & Report Analyzer</div>
+        <div class="feature-card-desc">Analyze symptoms, health questions, PDFs, camera photos, voice notes, and consultation videos.</div>
+        <div class="feature-card-action">Launch Analyzer <i class="bi bi-arrow-right"></i></div>
       </a>
 
-      <!-- 2. AI Report Explanation -->
-      <a href="explanation.html" class="feature-card">
-        <div class="feature-card-icon icon-teal"><i class="bi bi-lightbulb-fill"></i></div>
-        <div class="feature-card-title">2. AI Report Explanation</div>
-        <div class="feature-card-desc">Understand complex medical terms, flags for high/low parameters, and doctor questions.</div>
-        <div class="feature-card-action">View Explanation <i class="bi bi-arrow-right"></i></div>
+      <!-- 2. Nearby Hospital Finder with Verified Addresses -->
+      <a href="hospital.html" class="feature-card">
+        <div class="feature-card-icon icon-rose"><i class="bi bi-hospital-fill"></i></div>
+        <div class="feature-card-title">2. Nearby Hospital Finder</div>
+        <div class="feature-card-desc">Search government and private hospitals by City or PIN code with complete street addresses and travel time.</div>
+        <div class="feature-card-action">Locate Care <i class="bi bi-arrow-right"></i></div>
       </a>
 
-      <!-- 3. Prescription Scanner -->
+      <!-- 3. Medical AI Chatbot -->
+      <a href="chatbot.html" class="feature-card">
+        <div class="feature-card-icon icon-teal"><i class="bi bi-chat-dots-fill"></i></div>
+        <div class="feature-card-title">3. Medical AI Chatbot</div>
+        <div class="feature-card-desc">Context-aware medical Q&A with spoken microphone input and natural vocal response.</div>
+        <div class="feature-card-action">Ask Assistant <i class="bi bi-arrow-right"></i></div>
+      </a>
+
+      <!-- 4. Prescription Scanner -->
       <a href="prescription.html" class="feature-card">
         <div class="feature-card-icon icon-purple"><i class="bi bi-prescription2"></i></div>
-        <div class="feature-card-title">3. Prescription Scanner</div>
-        <div class="feature-card-desc">Scan written prescriptions to understand drug names, schedule, and dosage safely.</div>
+        <div class="feature-card-title">4. Prescription Explainer</div>
+        <div class="feature-card-desc">Decode doctor handwriting and drug schedules safely with pharmacist consult notices.</div>
         <div class="feature-card-action">Scan Prescription <i class="bi bi-arrow-right"></i></div>
       </a>
 
-      <!-- 4. Medical AI Chatbot -->
-      <a href="chatbot.html" class="feature-card">
-        <div class="feature-card-icon icon-rose"><i class="bi bi-chat-dots-fill"></i></div>
-        <div class="feature-card-title">4. Medical AI Chatbot</div>
-        <div class="feature-card-desc">Ask educational questions about your report in simple English, Hindi, or native tongue.</div>
-        <div class="feature-card-action">Start Chat <i class="bi bi-arrow-right"></i></div>
+      <!-- 5. Advanced Voice Assistant -->
+      <a href="voice.html" class="feature-card">
+        <div class="feature-card-icon icon-amber"><i class="bi bi-mic-fill"></i></div>
+        <div class="feature-card-title">5. Voice Command Assistant</div>
+        <div class="feature-card-desc">Navigate MediR hands-free using natural English or Hindi voice commands.</div>
+        <div class="feature-card-action">Speak Voice Commands <i class="bi bi-arrow-right"></i></div>
       </a>
 
-      <!-- 5. Language Translator -->
+      <!-- 6. Multilingual Translation Hub -->
       <a href="translation.html" class="feature-card">
         <div class="feature-card-icon icon-blue"><i class="bi bi-translate"></i></div>
-        <div class="feature-card-title">5. Language Translator</div>
-        <div class="feature-card-desc">Multilingual translation hub for Hindi, Marathi, Gujarati, Tamil, Telugu, and more.</div>
+        <div class="feature-card-title">6. Language Translator</div>
+        <div class="feature-card-desc">Translate medical explanations into 10 Indian regional languages without altering clinical numbers.</div>
         <div class="feature-card-action">Translate Now <i class="bi bi-arrow-right"></i></div>
       </a>
 
-      <!-- 6. Voice Assistant -->
-      <a href="voice.html" class="feature-card">
-        <div class="feature-card-icon icon-amber"><i class="bi bi-mic-fill"></i></div>
-        <div class="feature-card-title">6. Voice Assistant</div>
-        <div class="feature-card-desc">Control MediR hands-free using spoken English or Hindi voice commands.</div>
-        <div class="feature-card-action">Speak Commands <i class="bi bi-arrow-right"></i></div>
+      <!-- 7. Document Upload (PDF & Scans) -->
+      <a href="upload.html" class="feature-card">
+        <div class="feature-card-icon icon-emerald"><i class="bi bi-file-earmark-arrow-up"></i></div>
+        <div class="feature-card-title">7. PDF Report Upload</div>
+        <div class="feature-card-desc">Upload lab test reports in PDF, PNG, or JPG format with automatic OCR extraction.</div>
+        <div class="feature-card-action">Upload File <i class="bi bi-arrow-right"></i></div>
       </a>
 
-      <!-- 7. Photo Scanner & Camera -->
-      <a href="upload.html#camera" class="feature-card">
-        <div class="feature-card-icon icon-emerald"><i class="bi bi-camera-fill"></i></div>
-        <div class="feature-card-title">7. Photo Scanner / Camera</div>
-        <div class="feature-card-desc">Snap high-resolution photos of paper documents with device camera quality checks.</div>
+      <!-- 8. Camera Photo Scanner -->
+      <a href="analyzer.html#pane-camera" class="feature-card">
+        <div class="feature-card-icon icon-teal"><i class="bi bi-camera-fill"></i></div>
+        <div class="feature-card-title">8. Camera Photo Scanner</div>
+        <div class="feature-card-desc">Snap live document photos with review and text correction before AI analysis.</div>
         <div class="feature-card-action">Open Camera <i class="bi bi-arrow-right"></i></div>
       </a>
 
-      <!-- 8. Video Analyzer -->
-      <a href="upload.html#video" class="feature-card">
-        <div class="feature-card-icon icon-teal"><i class="bi bi-play-btn-fill"></i></div>
-        <div class="feature-card-title">8. Video Analyzer</div>
-        <div class="feature-card-desc">Upload medical instruction video clips for speech transcription and key takeaway summaries.</div>
-        <div class="feature-card-action">Analyze Video <i class="bi bi-arrow-right"></i></div>
-      </a>
-
-      <!-- 9. Nearby Hospital Finder -->
-      <a href="hospitals.html" class="feature-card">
-        <div class="feature-card-icon icon-rose"><i class="bi bi-geo-alt-fill"></i></div>
-        <div class="feature-card-title">9. Nearby Hospital Finder</div>
-        <div class="feature-card-desc">Interactive Leaflet map displaying emergency centers, distance, phone, and ratings.</div>
-        <div class="feature-card-action">View Map <i class="bi bi-arrow-right"></i></div>
+      <!-- 9. Video Consultation Analyzer -->
+      <a href="analyzer.html#pane-video" class="feature-card">
+        <div class="feature-card-icon icon-rose"><i class="bi bi-play-btn-fill"></i></div>
+        <div class="feature-card-title">9. Video Consultation Analyzer</div>
+        <div class="feature-card-desc">Upload doctor consultation clips for audio transcript generation and key point extraction.</div>
+        <div class="feature-card-action">Upload Video <i class="bi bi-arrow-right"></i></div>
       </a>
 
       <!-- 10. Previous Reports History -->
       <a href="history.html" class="feature-card">
         <div class="feature-card-icon icon-purple"><i class="bi bi-clock-history"></i></div>
         <div class="feature-card-title">10. Previous Reports</div>
-        <div class="feature-card-desc">Access processed medical documents with secure patient deletion anytime.</div>
+        <div class="feature-card-desc">Review your saved diagnostic assessments with 1-click permanent deletion.</div>
         <div class="feature-card-action">View History <i class="bi bi-arrow-right"></i></div>
       </a>
 
-      <!-- 11. Light & Dark Mode -->
+      <!-- 11. Profile & Privacy Settings -->
+      <a href="profile.html" class="feature-card">
+        <div class="feature-card-icon icon-blue"><i class="bi bi-person-gear"></i></div>
+        <div class="feature-card-title">11. Profile & Settings</div>
+        <div class="feature-card-desc">Manage language preferences, light/dark mode settings, and complete data sovereignty.</div>
+        <div class="feature-card-action">Manage Profile <i class="bi bi-arrow-right"></i></div>
+      </a>
+
+      <!-- 12. Green Healthcare Theme Switcher -->
       <div class="feature-card" style="cursor: pointer;" onclick="toggleTheme()">
         <div class="feature-card-icon icon-amber"><i class="bi bi-circle-half"></i></div>
-        <div class="feature-card-title">11. Light / Dark Mode</div>
-        <div class="feature-card-desc">Switch between crisp clinical light theme and eye-friendly dark contrast theme.</div>
+        <div class="feature-card-title">12. Light / Dark Mode Toggle</div>
+        <div class="feature-card-desc">Switch between Green Healthcare Light Mode and Green Midnight Dark Mode.</div>
         <div class="feature-card-action">Toggle Theme <i class="bi bi-arrow-repeat"></i></div>
-      </div>
-
-      <!-- 12. Accessibility Controls -->
-      <div class="feature-card" style="cursor: pointer;" onclick="adjustFontSize(2)">
-        <div class="feature-card-icon icon-blue"><i class="bi bi-universal-access-circle"></i></div>
-        <div class="feature-card-title">12. Accessibility Settings</div>
-        <div class="feature-card-desc">Screen-reader support, adjustable font scaling, high-contrast, and keyboard focus.</div>
-        <div class="feature-card-action">Increase Text Size <i class="bi bi-plus-circle"></i></div>
       </div>
     </div>
   </main>
-
-  <!-- Floating Voice Assistant -->
-  <button id="floatingVoiceBtn" class="floating-voice-btn" onclick="toggleVoiceModal()" title="Voice Assistant">
-    <i class="bi bi-mic-fill"></i>
-  </button>
 
   <!-- Universal Voice Modal -->
   <div id="voiceModal" class="voice-modal-overlay">
     <div class="voice-modal-box">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-bold mb-0 text-primary"><i class="bi bi-mic-fill"></i> Voice Assistant</h5>
+        <h5 class="fw-bold mb-0 text-success"><i class="bi bi-mic-fill"></i> Advanced Voice Assistant</h5>
         <button class="btn btn-sm btn-outline-secondary" onclick="toggleVoiceModal()">&times;</button>
       </div>
       <div id="soundWaveBox" class="sound-wave">
         <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
       </div>
       <div id="voiceStatusText" class="fw-semibold text-secondary mb-2">Listening...</div>
-      <div id="voiceTranscriptText" class="fst-italic text-muted small p-2 bg-light rounded mb-3">"Say: Open upload, Find hospitals..."</div>
-      <div id="voiceReplyText" class="fw-bold text-primary mb-3"></div>
+      <div id="voiceTranscriptText" class="fst-italic text-muted small p-2 bg-light rounded mb-3">"Say: Open analyzer, Find hospitals..."</div>
+      <div id="voiceReplyText" class="fw-bold text-success mb-3"></div>
       <div class="d-flex justify-content-center gap-2">
         <button class="btn btn-sm btn-primary" onclick="startVoiceListening()">Try Again</button>
         <button class="btn btn-sm btn-secondary" onclick="toggleVoiceModal()">Close</button>
@@ -265,11 +249,14 @@
     </div>
   </div>
 
+  <button id="floatingVoiceBtn" class="floating-voice-btn" onclick="toggleVoiceModal()"><i class="bi bi-mic-fill"></i></button>
+
   <footer class="medir-footer text-center">
     <div class="container small text-muted">MediR AI &bull; Making Medical Information Easy for Everyone</div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

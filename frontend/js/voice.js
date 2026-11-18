@@ -1,5 +1,5 @@
 /**
- * MediR AI - Dedicated Voice Assistant Studio Page
+ * MediR AI - Dedicated Advanced Voice Assistant Studio Page
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,52 +24,66 @@ function setupDedicatedVoiceControls() {
 
   const voiceRec = new SpeechRecognition();
   voiceRec.continuous = false;
-  voiceRec.interimResults = false;
+  voiceRec.interimResults = true; // Real-time interim preview!
 
   let active = false;
 
   voiceRec.onstart = () => {
     active = true;
-    statusEl.innerText = "Listening... Speak your command in English or Hindi.";
+    statusEl.innerText = "Listening... Speak naturally in English or Hindi.";
     micBtn.classList.add('listening');
     if (waveBox) waveBox.classList.add('listening');
   };
 
   voiceRec.onresult = (e) => {
-    const text = e.results[0][0].transcript;
-    transcriptEl.innerText = `"${text}"`;
-    statusEl.innerText = "Command received. Processing...";
+    let interim = '';
+    let final = '';
 
-    fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: text, is_voice: true })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.is_command && data.command) {
-        const cmd = data.command;
-        replyEl.innerText = cmd.speech_reply;
-        speakText(cmd.speech_reply);
-        statusEl.innerText = "Action Executed!";
-        setTimeout(() => executeVoiceAction(cmd), 1500);
+    for (let i = e.resultIndex; i < e.results.length; ++i) {
+      if (e.results[i].isFinal) {
+        final += e.results[i][0].transcript;
       } else {
-        const r = data.response || "Command answered.";
-        replyEl.innerText = r;
-        speakText(r);
-        statusEl.innerText = "Response completed.";
+        interim += e.results[i][0].transcript;
       }
-    })
-    .catch(() => {
-      statusEl.innerText = "Error processing command.";
-    });
+    }
+
+    transcriptEl.innerText = `"${final || interim}"`;
+
+    if (final) {
+      statusEl.innerText = "Voice recognized! Processing with MediR AI...";
+      
+      fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: final, is_voice: true })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.is_command && data.command) {
+          const cmd = data.command;
+          replyEl.innerText = cmd.speech_reply;
+          speakText(cmd.speech_reply);
+          statusEl.innerText = `Command Recognized: ${cmd.action}`;
+          setTimeout(() => executeVoiceAction(cmd), 1400);
+        } else {
+          // Spoken Medical Question!
+          const r = data.response || "Here is what I found.";
+          replyEl.innerText = r;
+          speakText(r);
+          statusEl.innerText = "Medical AI Answer Provided.";
+        }
+      })
+      .catch(() => {
+        statusEl.innerText = "Error communicating with server.";
+      });
+    }
   };
 
   voiceRec.onerror = (e) => {
     active = false;
     micBtn.classList.remove('listening');
     if (waveBox) waveBox.classList.remove('listening');
-    statusEl.innerText = `Microphone error: ${e.error}. Tap to try again.`;
+    statusEl.innerText = `Microphone notice: ${e.error}. Tap to try again.`;
   };
 
   voiceRec.onend = () => {
@@ -88,7 +102,7 @@ function setupDedicatedVoiceControls() {
     }
   });
 
-  // Setup click on voice command pills
+  // Setup click listeners on all voice command pills
   document.querySelectorAll('.voice-command-pill').forEach(pill => {
     pill.addEventListener('click', () => {
       const cmdText = pill.getAttribute('data-cmd');

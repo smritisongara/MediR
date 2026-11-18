@@ -13,8 +13,10 @@ from backend.routes.translate import translate_bp
 from backend.routes.chatbot import chatbot_bp
 from backend.routes.prescription import prescription_bp
 from backend.routes.history import history_bp
-from backend.routes.hospitals import hospitals_bp
+from backend.routes.hospital import hospital_bp
 from backend.routes.video import video_bp
+from backend.routes.analyzer import analyzer_bp
+from backend.routes.speech import speech_bp
 
 def create_app():
     """Application factory for MediR AI."""
@@ -35,8 +37,10 @@ def create_app():
     app.register_blueprint(chatbot_bp)
     app.register_blueprint(prescription_bp)
     app.register_blueprint(history_bp)
-    app.register_blueprint(hospitals_bp)
+    app.register_blueprint(hospital_bp)
     app.register_blueprint(video_bp)
+    app.register_blueprint(analyzer_bp)
+    app.register_blueprint(speech_bp)
     
     # ------------------ Frontend Page Routes ------------------
     frontend_dir = Config.BASE_DIR / "frontend"
@@ -49,11 +53,21 @@ def create_app():
     @app.route('/login.html')
     def login_page():
         return send_from_directory(frontend_dir, 'login.html')
+
+    @app.route('/signup')
+    @app.route('/signup.html')
+    def signup_page():
+        return send_from_directory(frontend_dir, 'signup.html')
         
     @app.route('/dashboard')
     @app.route('/dashboard.html')
     def dashboard_page():
         return send_from_directory(frontend_dir, 'dashboard.html')
+
+    @app.route('/analyzer')
+    @app.route('/analyzer.html')
+    def analyzer_page():
+        return send_from_directory(frontend_dir, 'analyzer.html')
         
     @app.route('/upload')
     @app.route('/upload.html')
@@ -91,10 +105,22 @@ def create_app():
     def history_page():
         return send_from_directory(frontend_dir, 'history.html')
         
+    @app.route('/hospital')
+    @app.route('/hospital.html')
     @app.route('/hospitals')
     @app.route('/hospitals.html')
-    def hospitals_page():
-        return send_from_directory(frontend_dir, 'hospitals.html')
+    def hospital_page():
+        return send_from_directory(frontend_dir, 'hospital.html')
+
+    @app.route('/hospital-details')
+    @app.route('/hospital-details.html')
+    def hospital_details_page():
+        return send_from_directory(frontend_dir, 'hospital-details.html')
+
+    @app.route('/profile')
+    @app.route('/profile.html')
+    def profile_page():
+        return send_from_directory(frontend_dir, 'profile.html')
 
     # Serve static assets (CSS, JS)
     @app.route('/css/<path:filename>')
